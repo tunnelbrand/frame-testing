@@ -1,4 +1,4 @@
-import { getFrameMetadata, FrameMetadata } from "@coinbase/onchainkit/frame";
+import { getFrameMetadata, FrameMetadataType } from "@coinbase/onchainkit/frame";
 import { PUBLIC_URL } from "@/app/config";
 
 export const HomeMetadata = getFrameMetadata({
@@ -17,7 +17,7 @@ export const HomeMetadata = getFrameMetadata({
     postUrl: `${PUBLIC_URL}/api/frame`,
 });
 
-export function Slideshow(name : string, index : number): FrameMetadata {
+export function Slideshow(name : string, index : number): FrameMetadataType {
     return {
         buttons: [
           {
