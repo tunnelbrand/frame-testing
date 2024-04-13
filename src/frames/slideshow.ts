@@ -26,7 +26,7 @@ export function Slideshow(
   // let earlyExit = !inslide && direction == DIRECTION_BACKWARD
   let hideNext = false;
   // let backToHome = (index <= 1);
-  if (slide > max) {
+  if (nextslide > max) {
     nextslide = max;
     hideNext = true;
   }
