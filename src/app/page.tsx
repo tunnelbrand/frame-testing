@@ -1,6 +1,22 @@
 import Link from "next/link";
-import Image from 'next/image'
+import Image from "next/image";
+import type { Metadata } from 'next';
+import { HomeMetadata } from "@/frames/home"
+import { PUBLIC_URL } from "@/app/config";
 
+export const metadata: Metadata = {
+  metadataBase: new URL(`https://{PUBLIC_URL}`),
+  title: `${PUBLIC_URL}`,
+  description: 'The cutest cat on BASE wears a poncho.',
+  openGraph: {
+    title: `${PUBLIC_URL}`,
+    description:  'The cutest cat on BASE wears a poncho.',
+    images: [`${PUBLIC_URL}/poncho.png`],
+  },
+  other: {
+    ...HomeMetadata,
+  },
+};
 
 export default function HomePage() {
   return (
@@ -30,7 +46,8 @@ export default function HomePage() {
         >
           <h3 className="text-2xl font-bold">First Steps →</h3>
           <div className="text-lg">
-            Vivamus a neque id turpis malesuada auctor nec quis tellus. Integer nec rutrum mauris
+            Vivamus a neque id turpis malesuada auctor nec quis tellus. Integer
+            nec rutrum mauris
           </div>
         </Link>
         <Link
@@ -40,7 +57,8 @@ export default function HomePage() {
         >
           <h3 className="text-2xl font-bold">Documentation →</h3>
           <div className="text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut leo diam, vulputate ac elit eget, mattis vehicula metus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut leo
+            diam, vulputate ac elit eget, mattis vehicula metus.
           </div>
         </Link>
       </div>

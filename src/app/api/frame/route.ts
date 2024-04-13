@@ -1,16 +1,22 @@
-import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@coinbase/onchainkit/frame';
-import { NextRequest, NextResponse } from 'next/server';
-import { NEXT_PUBLIC_URL } from '../../../../a-frame-in-100-lines/app/config';
+import {
+  FrameRequest,
+  getFrameMessage,
+  getFrameHtmlResponse,
+} from "@coinbase/onchainkit/frame";
+import { NextRequest, NextResponse } from "next/server";
+import { NEXT_PUBLIC_URL } from "../../../../a-frame-in-100-lines/app/config";
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();
-  const { isValid, message } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
+  const { isValid, message } = await getFrameMessage(body, {
+    neynarApiKey: "NEYNAR_ONCHAIN_KIT",
+  });
 
   if (!isValid) {
-    return new NextResponse('Message not valid', { status: 500 });
+    return new NextResponse("Message not valid", { status: 500 });
   }
 
-  const text = message.input || '';
+  const text = message.input || "";
   let state = {
     page: 0,
   };
@@ -25,7 +31,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
    */
   if (message?.button === 3) {
     return NextResponse.redirect(
-      'https://www.google.com/search?q=cute+dog+pictures&tbm=isch&source=lnms',
+      "https://www.google.com/search?q=cute+dog+pictures&tbm=isch&source=lnms",
       { status: 302 },
     );
   }
@@ -37,13 +43,13 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
           label: `State: ${state?.page || 0}`,
         },
         {
-          action: 'link',
-          label: 'OnchainKit',
-          target: 'https://onchainkit.xyz',
+          action: "link",
+          label: "OnchainKit",
+          target: "https://onchainkit.xyz",
         },
         {
-          action: 'post_redirect',
-          label: 'Dog pictures',
+          action: "post_redirect",
+          label: "Dog pictures",
         },
       ],
       image: {
@@ -62,4 +68,4 @@ export async function POST(req: NextRequest): Promise<Response> {
   return getResponse(req);
 }
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
