@@ -42,7 +42,7 @@ export async function POST(req: NextRequest): Promise<Response> {
   } catch (e) {}
 
   console.log(message);
-  let direction = DIRECTION_FORWARD;
+  const direction = DIRECTION_FORWARD;
   if (message?.button === BACK_BUTTON && props.active) {
     return new NextResponse(getFrameHtmlResponse(HomeFrameMetadata));
   }

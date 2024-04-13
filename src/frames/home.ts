@@ -1,7 +1,11 @@
 import { getFrameMetadata } from "@coinbase/onchainkit/frame";
 import { PUBLIC_URL } from "@/app/config";
+import type {
+  FrameMetadataType,
+} from "@coinbase/onchainkit/frame";
 
-export const HomeFrameMetadata = {
+
+export const HomeFrameMetadata : FrameMetadataType = {
   buttons: [
     {
       label: "Interested?",
