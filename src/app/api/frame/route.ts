@@ -11,6 +11,7 @@ import {
   DIRECTION_BACKWARD,
 } from "@/frames/slideshow";
 import type { SlideshowProps } from "@/frames/slideshow";
+import { HomeFrameMetadata } from "~/frames/home";
 
 const BACK_BUTTON = 1;
 
@@ -42,8 +43,8 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   console.log(message);
   let direction = DIRECTION_FORWARD;
-  if (message?.button === BACK_BUTTON) {
-    direction = DIRECTION_BACKWARD;
+  if (message?.button === BACK_BUTTON && props.active) {
+    return new NextResponse(getFrameHtmlResponse(HomeFrameMetadata));
   }
 
   return new NextResponse(getFrameHtmlResponse(Slideshow(props, direction)));

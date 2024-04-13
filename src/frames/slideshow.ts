@@ -34,31 +34,44 @@ export function Slideshow(
   const nextButton: FrameButtonMetadata = {
     label: `Next`,
   };
+  const backButton: FrameButtonMetadata = {
+    label: `Return`,
+  };
+  const returnButton: FrameButtonMetadata = {
+    label: `Return`,
+  };
 
-  // const backButton: FrameButtonMetadata = returnToHome
-  //   ? {
-  //       label: "Back",
-  //       action: "post",
-  //     }
-  //   : {
-  //       label: `Back`,
-  //     };
-
-  const navButtons: FrameButtonMetadata[] = [
-    // backButton,
-    nextButton,
-  ];
+  let stateOf = 'unknown'
+  let navButtons: FrameButtonMetadata[]
+  if (slide === 1) {
+    stateOf = 'start'
+    navButtons = [
+      returnButton,
+      nextButton
+    ]
+  } else if (slide === max) {
+    stateOf = 'end'
+    navButtons = [
+      backButton
+    ]
+  } else {
+    stateOf = 'presenting'
+    navButtons = [
+      backButton,
+      nextButton
+    ]
+  }
 
   const buyButton: FrameButtonMetadata[] = [
     {
-      action: "post_redirect",
+      action: "link",
       label: "Buy now!",
       target:
         "https://app.uniswap.org/swap?outputCurrency=0xC2fE011C3885277c7F0e7ffd45Ff90cADc8ECD12&chain=base",
     },
   ];
 
-  const buttons = hideNext ? buyButton : buyButton.concat(navButtons);
+  const buttons = navButtons.concat(buyButton);
 
   const newState: SlideshowProps = {
     name: name,
