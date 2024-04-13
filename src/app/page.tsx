@@ -1,17 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { Metadata } from 'next';
-import { HomeMetadata } from "@/frames/home"
+import type { Metadata } from "next";
+import { HomeMetadata } from "@/frames/home";
 import { PUBLIC_URL } from "@/app/config";
 
 export const metadata: Metadata = {
   metadataBase: new URL(PUBLIC_URL),
   title: `Poncho`,
-  description: 'The cutest cat on BASE',
+  description: "The cutest cat on BASE",
   openGraph: {
     title: `Poncho`,
-    description: 'The cutest cat on BASE',
-    images: ['/images/poncho.png'],
+    description: "The cutest cat on BASE",
+    images: ["/images/poncho.png"],
   },
   other: {
     ...HomeMetadata,
