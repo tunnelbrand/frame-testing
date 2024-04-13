@@ -5,10 +5,14 @@ import {
 } from "@coinbase/onchainkit/frame";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { Slideshow, DIRECTION_FORWARD, DIRECTION_BACKWARD } from "@/frames/slideshow";
+import {
+  Slideshow,
+  DIRECTION_FORWARD,
+  DIRECTION_BACKWARD,
+} from "@/frames/slideshow";
 import type { SlideshowProps } from "@/frames/slideshow";
 
-const BACK_BUTTON:number=1;
+const BACK_BUTTON: number = 1;
 
 export async function POST(req: NextRequest): Promise<Response> {
   const body: FrameRequest = (await req.json()) as FrameRequest;
@@ -34,11 +38,10 @@ export async function POST(req: NextRequest): Promise<Response> {
     props = JSON.parse(
       decodeURIComponent(message.state?.serialized),
     ) as SlideshowProps;
-  } catch (e) {
-  }
+  } catch (e) {}
 
-  console.log(message)
-  let direction = DIRECTION_FORWARD
+  console.log(message);
+  let direction = DIRECTION_FORWARD;
   if (message?.button === BACK_BUTTON) {
     direction = DIRECTION_BACKWARD;
   }

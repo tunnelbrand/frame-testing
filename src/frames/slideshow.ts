@@ -4,8 +4,8 @@ import type {
 } from "@coinbase/onchainkit/frame";
 import { PUBLIC_URL } from "@/app/config";
 
-export const DIRECTION_FORWARD: string = 'forward';
-export const DIRECTION_BACKWARD: string = 'backward';
+export const DIRECTION_FORWARD: string = "forward";
+export const DIRECTION_BACKWARD: string = "backward";
 
 export interface SlideshowProps {
   name: string;
@@ -14,12 +14,15 @@ export interface SlideshowProps {
   active: boolean;
 }
 
-export function Slideshow(props: SlideshowProps, direction: string): FrameMetadataType {
+export function Slideshow(
+  props: SlideshowProps,
+  direction: string,
+): FrameMetadataType {
   const { name, max, slide, active } = props;
   // let nextslide = (direction == DIRECTION_BACKWARD) ? slide - 1 : slide + 1
-  let nextslide = slide + 1
+  let nextslide = slide + 1;
 
-  let returnToHome = (!active && direction == DIRECTION_BACKWARD)
+  let returnToHome = !active && direction == DIRECTION_BACKWARD;
   // let earlyExit = !inslide && direction == DIRECTION_BACKWARD
   let hideNext = false;
   // let backToHome = (index <= 1);
@@ -30,26 +33,30 @@ export function Slideshow(props: SlideshowProps, direction: string): FrameMetada
 
   const nextButton: FrameButtonMetadata = {
     label: `Next`,
-  }
+  };
 
-  const backButton: FrameButtonMetadata = (returnToHome) ? {
-    label: 'Back',
-    action: 'post',
-  } : {
-    label: `Back`,
-  }
+  const backButton: FrameButtonMetadata = returnToHome
+    ? {
+        label: "Back",
+        action: "post",
+      }
+    : {
+        label: `Back`,
+      };
 
   const navButtons: FrameButtonMetadata[] = [
     // backButton,
     nextButton,
   ];
 
-  const buyButton: FrameButtonMetadata[] = [{
-    action: "post_redirect",
-    label: "Buy now!",
-    target:
-      "https://app.uniswap.org/swap?outputCurrency=0xC2fE011C3885277c7F0e7ffd45Ff90cADc8ECD12&chain=base",
-  }];
+  const buyButton: FrameButtonMetadata[] = [
+    {
+      action: "post_redirect",
+      label: "Buy now!",
+      target:
+        "https://app.uniswap.org/swap?outputCurrency=0xC2fE011C3885277c7F0e7ffd45Ff90cADc8ECD12&chain=base",
+    },
+  ];
 
   const buttons = hideNext ? buyButton : buyButton.concat(navButtons);
 
