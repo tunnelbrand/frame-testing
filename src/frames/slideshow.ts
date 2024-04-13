@@ -8,7 +8,7 @@ export const HomeMetadata = getFrameMetadata({
         },
     ],
     image: {
-        src: `${PUBLIC_URL}/frames/images/poncho.png`,
+        src: `/frames/images/poncho.png`,
         aspectRatio: "1:1",
     },
     input: {
