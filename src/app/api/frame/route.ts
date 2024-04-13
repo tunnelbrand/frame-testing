@@ -12,7 +12,7 @@ import {
 } from "@/frames/slideshow";
 import type { SlideshowProps } from "@/frames/slideshow";
 
-const BACK_BUTTON: number = 1;
+const BACK_BUTTON = 1;
 
 export async function POST(req: NextRequest): Promise<Response> {
   const body: FrameRequest = (await req.json()) as FrameRequest;

@@ -4,8 +4,8 @@ import type {
 } from "@coinbase/onchainkit/frame";
 import { PUBLIC_URL } from "@/app/config";
 
-export const DIRECTION_FORWARD: string = "forward";
-export const DIRECTION_BACKWARD: string = "backward";
+export const DIRECTION_FORWARD = "forward";
+export const DIRECTION_BACKWARD = "backward";
 
 export interface SlideshowProps {
   name: string;
@@ -22,7 +22,7 @@ export function Slideshow(
   // let nextslide = (direction == DIRECTION_BACKWARD) ? slide - 1 : slide + 1
   let nextslide = slide + 1;
 
-  let returnToHome = !active && direction == DIRECTION_BACKWARD;
+  const returnToHome = !active && direction == DIRECTION_BACKWARD;
   // let earlyExit = !inslide && direction == DIRECTION_BACKWARD
   let hideNext = false;
   // let backToHome = (index <= 1);
@@ -35,14 +35,14 @@ export function Slideshow(
     label: `Next`,
   };
 
-  const backButton: FrameButtonMetadata = returnToHome
-    ? {
-        label: "Back",
-        action: "post",
-      }
-    : {
-        label: `Back`,
-      };
+  // const backButton: FrameButtonMetadata = returnToHome
+  //   ? {
+  //       label: "Back",
+  //       action: "post",
+  //     }
+  //   : {
+  //       label: `Back`,
+  //     };
 
   const navButtons: FrameButtonMetadata[] = [
     // backButton,
