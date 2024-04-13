@@ -1,14 +1,14 @@
-import type {
-  FrameRequest,
-} from "@coinbase/onchainkit/frame";
+import type { FrameRequest } from "@coinbase/onchainkit/frame";
 import {
   getFrameMessage,
   getFrameHtmlResponse,
 } from "@coinbase/onchainkit/frame";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { Slideshow } from "@/frames/slideshow";
+import { Slideshow, DIRECTION_FORWARD, DIRECTION_BACKWARD } from "@/frames/slideshow";
 import type { SlideshowProps } from "@/frames/slideshow";
+
+const BACK_BUTTON:number=1;
 
 export async function POST(req: NextRequest): Promise<Response> {
   const body: FrameRequest = (await req.json()) as FrameRequest;
@@ -26,18 +26,24 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   let props: SlideshowProps = {
     name: "default",
-    index: 1,
+    slide: 1,
     max: 4,
+    active: false,
   };
   try {
-    props = JSON.parse(decodeURIComponent(message.state?.serialized)) as SlideshowProps;
+    props = JSON.parse(
+      decodeURIComponent(message.state?.serialized),
+    ) as SlideshowProps;
   } catch (e) {
-    console.error(e);
   }
 
-  return new NextResponse(
-    getFrameHtmlResponse(Slideshow(props)),
-  );
+  console.log(message)
+  let direction = DIRECTION_FORWARD
+  if (message?.button === BACK_BUTTON) {
+    direction = DIRECTION_BACKWARD;
+  }
+
+  return new NextResponse(getFrameHtmlResponse(Slideshow(props, direction)));
 }
 
 export const dynamic = "force-dynamic";
