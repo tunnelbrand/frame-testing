@@ -1,2 +1,1 @@
-# frame-testing
-Testing some things with NextJS
+# Frame Testing
