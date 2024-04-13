@@ -12,7 +12,7 @@ export const HomeMetadata = getFrameMetadata({
         aspectRatio: "1:1",
     },
     input: {
-        text: "The cutest cat on BASE wears a poncho.",
+        text: "The cutest cat on BASE",
     },
     postUrl: `${PUBLIC_URL}/api/frame`,
 });

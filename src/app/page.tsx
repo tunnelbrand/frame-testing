@@ -7,11 +7,11 @@ import { PUBLIC_URL } from "@/app/config";
 export const metadata: Metadata = {
   metadataBase: new URL(`https://{PUBLIC_URL}`),
   title: `${PUBLIC_URL}`,
-  description: 'The cutest cat on BASE wears a poncho.',
+  description: 'The cutest cat on BASE',
   openGraph: {
     title: `${PUBLIC_URL}`,
-    description:  'The cutest cat on BASE wears a poncho.',
-    images: [`${PUBLIC_URL}/poncho.png`],
+    description: 'The cutest cat on BASE',
+    images: [`${PUBLIC_URL}/images/poncho.png`],
   },
   other: {
     ...HomeMetadata,
